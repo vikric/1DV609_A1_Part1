@@ -32,7 +32,7 @@ describe('Password class, test suite', () => {
 
     test('throws error if password does not contain numbers', () => {
         expect(() => {
-            new Password('Test123123123123')
+            new Password('TestTestTestTest')
         }).toThrow('No number found')
     });
 
