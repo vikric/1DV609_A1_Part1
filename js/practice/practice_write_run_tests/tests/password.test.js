@@ -27,7 +27,7 @@ describe('Password class, test suite', () => {
     test('throws error for too short password', () => {
         expect(() => {
             new Password('Test123')
-        }).toThrow('Password')
+        }).toThrow('Too short password')
     });
 
     //Add your tests here
