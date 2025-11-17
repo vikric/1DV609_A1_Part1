@@ -30,5 +30,11 @@ describe('Password class, test suite', () => {
         }).toThrow('Too short password')
     });
 
+    test('throws error if password does not contain numbers', () => {
+        expect(() => {
+            new Password('Test123123123123')
+        }).toThrow('No number found')
+    });
+
     //Add your tests here
 });
