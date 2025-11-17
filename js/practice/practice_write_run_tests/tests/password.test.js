@@ -18,7 +18,6 @@ describe('Password class, test suite', () => {
     //put constants here to increase readability
     const passwordText = "Password1234"
     const password = new Password(passwordText)
-    const emptyPassword = '';
 
     test('Check constructor of class', () => {
         
