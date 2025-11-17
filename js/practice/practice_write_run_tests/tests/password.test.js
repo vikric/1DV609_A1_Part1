@@ -16,11 +16,12 @@ import { Password } from '../src/BugDoesNotHash'
 describe('Password class, test suite', () => {
 
     //put constants here to increase readability
-    const passwordText = "Password123"
+    const passwordText = "Password1234"
     const password = new Password(passwordText)
     const emptyPassword = '';
 
     test('Check constructor of class', () => {
+        
         expect(password).toBeInstanceOf(Password);
     });
 
