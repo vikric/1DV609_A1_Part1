@@ -24,5 +24,11 @@ describe('Password class, test suite', () => {
         expect(password).toBeInstanceOf(Password);
     });
 
+    test('throws error for too short password', () => {
+        expect(() => {
+            new Password('Test123')
+        }).toThrow('Password')
+    });
+
     //Add your tests here
 });
