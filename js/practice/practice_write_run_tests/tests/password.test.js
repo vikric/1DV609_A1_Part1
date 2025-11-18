@@ -1,6 +1,6 @@
 // Select one of the Password versions to test
 
-/* import { Password } from "../src/Correct"; */
+import { Password } from "../src/Correct";
 /* import { Password } from "../src/MyBug"; */
 
 // Correct!
@@ -19,20 +19,20 @@ describe("Password class, test suite", () => {
   //put constants here to increase readability
   const correctPassword = "MyPassword1234";
 
-  test("Check if password argument is instanceOf Password", () => {
+  const incorrectPasswords = [
+    "", // Catches bugs on empty passwords
+    "12345", // Catches bugs on passwords with length less than 6
+    "abcde12345", // Catches bugs on passwords with length less than 11
+    "  12345678901  ", // Catches bugs on passwords that does not trim or is less than 12.
+  ];
+
+  test("constructor should throw exception if password argument is not instanceOf Password", () => {
     expect(() => {
       new Password(correctPassword).isPasswordSame("Test");
     }).toThrow("Invalid argument");
   });
 
   test("constructor should throw exception for short passwords", () => {
-    const incorrectPasswords = [
-      "", // Catches bugs on empty passwords
-      "12345", // Catches bugs on passwords with length less than 6
-      "abcde12345", // Catches bugs on passwords with length less than 11
-      "  12345678901  ", // Catches bugs on passwords that does not trim or is less than 12.
-    ];
-
     for (const pw of incorrectPasswords) {
       expect(() => new Password(pw)).toThrow("Too short password");
     }
@@ -44,13 +44,13 @@ describe("Password class, test suite", () => {
     }).toThrow("No number found");
   });
 
-  test("constructor should not throw exception for passwords without numbers", () => {
+  test("constructor should not throw exception for passwords with numbers", () => {
     expect(() => {
       new Password(correctPassword);
     }).not.toThrow("No number found");
   });
 
-  test("Return the hashed password", () => {
+  test("Check expected password hashing", () => {
     const password = new Password(correctPassword);
     let hashValue = 7;
     for (let i = 0; i < correctPassword.length; i++) {
