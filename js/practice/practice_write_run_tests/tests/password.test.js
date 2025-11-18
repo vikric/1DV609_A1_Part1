@@ -1,7 +1,6 @@
-
 // Select one of the Password versions to test
 
-import { Password } from '../src/BugDoesNotHash'
+import { Password } from "../src/BugDoesNotHash";
 // import { Password } from '../src/BugDoesNotTrim'
 // import { Password } from '../src/BugisPasswordAlwaysSame'
 // import { Password } from '../src/BugMissingNumberCheck'
@@ -13,28 +12,41 @@ import { Password } from '../src/BugDoesNotHash'
 // import { Password } from '../src/BugWrongMessage'
 // import { Password } from '../src/Correct'
 
-describe('Password class, test suite', () => {
+describe("Password class, test suite", () => {
+  //put constants here to increase readability
+  const passwordText = "Password1234";
+  const password = new Password(passwordText);
 
-    //put constants here to increase readability
-    const passwordText = "Password1234"
-    const password = new Password(passwordText)
+  test("Check constructor of class", () => {
+    expect(password).toBeInstanceOf(Password);
+  });
 
-    test('Check constructor of class', () => {
-        
-        expect(password).toBeInstanceOf(Password);
-    });
+  test("throws error for too short password", () => {
+    expect(() => {
+      new Password("Test123");
+    }).toThrow("Too short password");
+  });
 
-    test('throws error for too short password', () => {
-        expect(() => {
-            new Password('Test123')
-        }).toThrow('Too short password')
-    });
+  test("throws error if password does not contain numbers", () => {
+    expect(() => {
+      new Password("TestTestTestTest");
+    }).toThrow("No number found");
+  });
 
-    test('throws error if password does not contain numbers', () => {
-        expect(() => {
-            new Password('TestTestTestTest')
-        }).toThrow('No number found')
-    });
+  test("Return the unhashed password", () => {
+    const actual = password.getPasswordHash();
+    expect(actual).toBe(passwordText);
+  });
 
-    //Add your tests here
+  test("Check if password is the same", () => {
+    const anotherPassword = new Password("NewPassWord1234");
+    const actual = password.isPasswordSame(anotherPassword);
+    expect(actual).toBeFalsy();
+  });
+
+  test("Check if password argument is instanceOf Password", () => {
+    expect(() => {
+      password.isPasswordSame("Test");
+    }).toThrow("Invalid argument");
+  });
 });
