@@ -1,5 +1,5 @@
 import { SwedishSocialSecurityNumber } from '../src/correct/SwedishSocialSecurityNumber'; 
-
+import {jest} from '@jest/globals';
 
 
 //NOTE THESE TESTS SHOULD NOT BE DEPENDENT ON SSNHelper BUT USE MOCKING
