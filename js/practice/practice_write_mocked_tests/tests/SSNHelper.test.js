@@ -11,45 +11,73 @@ import { SSNHelper } from "../src/correct/SSNHelper";
 
 describe("SSNHelper Tests", () => {
   const helper = new SSNHelper();
-  const correctStringInput = "900407-2261";
-  const incorrectStringInput = "1234567-1234";
 
-  test("isCorrectLength should return true when correct length is entered", () => {
-    const result = helper.isCorrectLength(correctStringInput);
-    expect(result).toBeTruthy();
-  });
+  const correctStringInput = ["900407-2261", "810710-4856", "820129-0528"];
 
-  test("isCorrectLength should return false when incorrect length is entered", () => {
-    const result = helper.isCorrectLength(incorrectStringInput);
-    expect(result).toBeFalsy();
-  });
+  const incorrectStringInput = [
+    "12345678-1234",
+    "1234567-12345",
+    "12345678-12345",
+  ];
 
-  test("isValidMonth should return true when input has valid month", () => {
-    for (let i = 1; i <= 12; i++) {
-      const result = helper.isValidMonth(i);
+  const correctDays = ["1", "15", "31"];
+  const correctMonths = ["1", "6", "12"];
+  const incorrectDays = ["0", "32", "-1"];
+  const incorrectMonths = ["0", "13", "-1"];
+
+  test.each(correctStringInput)(
+    "isCorrectLength should return true when correct length is entered %s",
+    (value) => {
+      const result = helper.isCorrectLength(value);
       expect(result).toBeTruthy();
     }
-  });
+  );
 
-  test("isValidMonth should return false when input has invalid month", () => {
-    const result = helper.isValidMonth(0);
-    expect(result).toBeFalsy();
-  });
+  test.each(incorrectStringInput)(
+    "isCorrectLength should return false when incorrect length is entered %s",
+    (value) => {
+      const result = helper.isCorrectLength(value);
+      expect(result).toBeFalsy();
+    }
+  );
 
-  test("returns true when input has valid day", () => {
-    for (let i = 1; i <= 31; i++) {
-      const result = helper.isValidDay(i);
+  test.each(correctMonths)(
+    "isValidMonth should return true when input has valid month '%s'",
+    (month) => {
+      const result = helper.isValidMonth(month);
       expect(result).toBeTruthy();
     }
-  });
+  );
 
-  test("isCorrectFormat should return false when entering invalid regex", () => {
-    const result = helper.isCorrectFormat(incorrectStringInput);
-    expect(result).toBeFalsy();
-  });
+  test.each(incorrectMonths)(
+    "isValidMonth should return false when input has valid month %s",
+    (month) => {
+      const result = helper.isValidMonth(month);
+      expect(result).toBeFalsy();
+    }
+  );
 
-  test("luhnisCorrect should return true on correct input", () => {
-    const result = helper.luhnisCorrect(correctStringInput);
-    expect(result).toBeTruthy();
-  });
+  test.each(correctDays)(
+    "isValidDay should return true when input has valid day %s",
+    (day) => {
+      const result = helper.isValidDay(day);
+      expect(result).toBeTruthy();
+    }
+  );
+
+  test.each(incorrectStringInput)(
+    "isCorrectFormat should return false when entering invalid format",
+    (value) => {
+      const result = helper.isCorrectFormat(value);
+      expect(result).toBeFalsy();
+    }
+  );
+
+  test.each(correctStringInput)(
+    "luhnisCorrect should return true on correct input",
+    (value) => {
+      const result = helper.luhnisCorrect(value);
+      expect(result).toBeTruthy();
+    }
+  );
 });
