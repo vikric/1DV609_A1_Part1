@@ -22,7 +22,6 @@ describe("SSNHelper Tests", () => {
 
   const correctDays = ["1", "15", "31"];
   const correctMonths = ["1", "6", "12"];
-  const incorrectDays = ["0", "32", "-1"];
   const incorrectMonths = ["0", "13", "-1"];
 
   test.each(correctStringInput)(
