@@ -2,7 +2,7 @@
 
 /* import { Password } from "../src/Correct"; */
 
-import { Password } from "../src/MyBug";
+/* import { Password } from "../src/MyBug"; */
 
 // Correct!
 /* import { Password } from "../src/BugDoesNotHash"; */
@@ -10,7 +10,7 @@ import { Password } from "../src/MyBug";
 /* import { Password } from '../src/BugisPasswordAlwaysSame' */
 /* import { Password } from '../src/BugMissingNumberCheck' */
 /* import { Password } from '../src/BugMissingPasswordCheck' */
-/* import { Password } from "../src/BugNeverContainsNumbers"; */
+import { Password } from "../src/BugNeverContainsNumbers";
 /* import { Password } from "../src/BugToShortPassword"; */
 /* import { Password } from "../src/BugVeryShort"; */
 /* import { Password } from "../src/BugWrongHashingAlgorithm"; */
@@ -26,7 +26,7 @@ describe("Password class, test suite", () => {
     "abcde123456", // Catches bugs on passwords with length less than 11
   ];
 
-  test("should throw exception if argument is not instanceOf Password", () => {
+  test("isPasswordSame should throw exception if argument is not instanceOf Password", () => {
     expect(() => {
       new Password(correctPassword).isPasswordSame("password");
     }).toThrow("Invalid argument");
@@ -58,7 +58,7 @@ describe("Password class, test suite", () => {
     }).not.toThrow("No number found");
   });
 
-  test("Check expected password hashing", () => {
+  test("constructor should hash password", () => {
     const password = new Password(correctPassword);
     let hashValue = 7;
     for (let i = 0; i < correctPassword.length; i++) {
@@ -67,7 +67,7 @@ describe("Password class, test suite", () => {
     expect(password.getPasswordHash()).toBe(hashValue);
   });
 
-  test("Check if password is the same", () => {
+  test("isPasswordSame should return false on different passwords", () => {
     const anotherCorrectPassword = new Password("NewPassWord1234");
     const password = new Password(correctPassword);
     const actual = password.isPasswordSame(anotherCorrectPassword);
