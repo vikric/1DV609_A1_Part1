@@ -8,3 +8,17 @@
 | Password hashing              | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ | ✅ | 
 | Same password check           | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | 
 | Coverage                      | 100% | 100% | 100% | 100% | 93% | 93% | 41.7% | 100% | 100% | 100% | 100% | 100% | 
+
+---
+
+| Testname            | *Correct* | *NoLenCheck* | *NoTrim* |  *NumberNoLuhn* | *WrongYear* |
+|---|---|---|---|---|---|
+| Length invalid      | ✅ | ❌ | ✅ | ✅ | ✅ |  
+| String not trimmed  | ✅ | ✅ | ❌ | ✅ | ✅ |   
+| Luhn alg invalid    | ✅ | ✅ | ✅ | ❌ | ✅ | 
+| First 2 digits      | ✅ | ✅ | ✅ | ✅ | ❌ | 
+| Format invalid      | ✅ | ✅ | ✅ | ✅ | ✅ |  
+| Month invalid       | ✅ | ✅ | ✅ | ✅ | ✅ | 
+| Day invalid         | ✅ | ✅ | ✅ | ✅ | ✅ |  
+| Last 4 digits       | ✅ | ✅ | ✅ | ✅ | ✅ |  
+| Coverage            | 100% | 100% | 100% | 100% | 100% |
