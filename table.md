@@ -1,3 +1,4 @@
+Write run tests
 | Testname       | *Correct* | *NotHash* | *NoTrim* |  *PassAlwaysSame* | *MissingNumberCheck* | *MissingPasswordCheck* | *ContainsNumber* | *ShortPassword* | *VeryShort* | *WrongHashAlg* | *Wrong Message* | *My Bug* |
 |---|---|---|---|---|---|---|---|---|---|---|---| ---|
 | InstanceOf Password argument  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | 
@@ -10,15 +11,16 @@
 | Coverage                      | 100% | 100% | 100% | 100% | 93% | 93% | 41.7% | 100% | 100% | 100% | 100% | 100% | 
 
 ---
+Write Mocked tests
 
 | Testname            | *Correct* | *NoLenCheck* | *NoTrim* |  *NumberNoLuhn* | *WrongYear* |
 |---|---|---|---|---|---|
-| Length invalid      | ✅ | ❌ | ✅ | ✅ | ✅ |  
-| String not trimmed  | ✅ | ✅ | ❌ | ✅ | ✅ |   
-| Luhn alg invalid    | ✅ | ✅ | ✅ | ❌ | ✅ | 
-| First 2 digits      | ✅ | ✅ | ✅ | ✅ | ❌ | 
-| Format invalid      | ✅ | ✅ | ✅ | ✅ | ✅ |  
-| Month invalid       | ✅ | ✅ | ✅ | ✅ | ✅ | 
-| Day invalid         | ✅ | ✅ | ✅ | ✅ | ✅ |  
-| Last 4 digits       | ✅ | ✅ | ✅ | ✅ | ✅ |  
+| Length invalid      | ✅  | ❌ | ✅ | ✅ | ✅ |  
+| String not trimmed  | ✅  | ✅ | ❌ | ✅ | ✅ |   
+| Luhn alg invalid    | ✅  | ✅ | ✅ | ❌ | ✅ | 
+| First 2 digits      | ✅  | ✅ | ✅ | ✅ | ❌ | 
+| Format invalid      | ✅  | ✅ | ✅ | ✅ | ✅ |  
+| Month invalid       | ✅  | ✅ | ✅ | ✅ | ✅ | 
+| Day invalid         | ✅  | ✅ | ✅ | ✅ | ✅ |  
+| Last 4 digits       | ✅  | ✅ | ✅ | ✅ | ✅ |  
 | Coverage            | 100% | 100% | 100% | 100% | 100% |

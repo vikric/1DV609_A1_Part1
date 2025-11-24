@@ -1,8 +1,8 @@
-/* import { SwedishSocialSecurityNumber } from "../src/correct/SwedishSocialSecurityNumber"; */
+import { SwedishSocialSecurityNumber } from "../src/correct/SwedishSocialSecurityNumber";
 /* import { SwedishSocialSecurityNumber } from "../src/bugs/BuggySwedishSocialSecurityNumberNoLenCheck"; */
 /* import { SwedishSocialSecurityNumber } from "../src/bugs/BuggySwedishSocialSecurityNumberNoTrim"; */
 /* import { SwedishSocialSecurityNumber } from "../src/bugs/BuggySwedishSocialSecutityNumberNoLuhn"; */
-import { SwedishSocialSecurityNumber } from "../src/bugs/BuggySwedishSocialSecutityNumberWrongYear";
+/* import { SwedishSocialSecurityNumber } from "../src/bugs/BuggySwedishSocialSecutityNumberWrongYear"; */
 import { beforeEach, expect, jest } from "@jest/globals";
 
 //NOTE THESE TESTS SHOULD NOT BE DEPENDENT ON SSNHelper BUT USE MOCKING
@@ -25,47 +25,54 @@ describe("SwedishSocialSecurityNumber Tests", () => {
     };
   });
 
-  test("Should throw exception when length is invalid", () => {
+  test("constructor should throw exception when length is invalid", () => {
     mockHelper.isCorrectLength.mockReturnValue(false);
     expect(() => new SwedishSocialSecurityNumber(ssn, mockHelper)).toThrow();
+    expect(mockHelper.isCorrectLength).toHaveBeenCalledWith(ssn);
   });
 
-  test("Should throw exception when ssn is not trimmed", () => {
+  test("constructor should trim string", () => {
     const trimSpy = jest.spyOn(String.prototype, "trim");
     sut = new SwedishSocialSecurityNumber(ssnWithSpaces, mockHelper);
     expect(trimSpy).toHaveBeenCalled();
   });
 
-  test("Should throw exception when luhn alghorithm is invalid", () => {
+  test("constructor should throw exception when luhn alghorithm is invalid", () => {
     mockHelper.luhnisCorrect.mockReturnValue(false);
     expect(() => new SwedishSocialSecurityNumber(ssn, mockHelper)).toThrow();
+    expect(mockHelper.luhnisCorrect).toHaveBeenCalledWith(ssn);
   });
 
-  test("Should return first 2 digits from entered ssn", () => {
+  test("getYear should return first 2 digits from entered ssn", () => {
     const expectedYear = ssn.substring(0, 2);
     sut = new SwedishSocialSecurityNumber(ssn, mockHelper);
+
     const actual = sut.getYear();
     expect(actual).toBe(expectedYear);
   });
 
-  test("Should throw exception when format is invalid", () => {
+  test("contructor should throw exception when format is invalid", () => {
     mockHelper.isCorrectFormat.mockReturnValue(false);
     expect(() => new SwedishSocialSecurityNumber(ssn, mockHelper)).toThrow();
+    expect(mockHelper.isCorrectFormat).toHaveBeenCalledWith(ssn);
   });
 
-  test("Should throw exception when month is invalid", () => {
+  test("constructor should throw exception when month is invalid", () => {
     mockHelper.isValidMonth.mockReturnValue(false);
     expect(() => new SwedishSocialSecurityNumber(ssn, mockHelper)).toThrow();
+    expect(mockHelper.isValidMonth).toHaveBeenCalled();
   });
 
-  test("Should throw exception when day is invalid", () => {
+  test("constructor should throw exception when day is invalid", () => {
     mockHelper.isValidDay.mockReturnValue(false);
     expect(() => new SwedishSocialSecurityNumber(ssn, mockHelper)).toThrow();
+    expect(mockHelper.isValidDay).toHaveBeenCalled();
   });
 
-  test("Should return last 4 digits from entered ssn", () => {
+  test("getSerialNumber should return last 4 digits from entered ssn", () => {
     const expectedDigits = ssn.substring(7, 11);
     sut = new SwedishSocialSecurityNumber(ssn, mockHelper);
+
     const actual = sut.getSerialNumber();
     expect(actual).toBe(expectedDigits);
   });
