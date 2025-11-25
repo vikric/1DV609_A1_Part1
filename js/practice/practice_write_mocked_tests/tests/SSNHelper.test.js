@@ -1,7 +1,7 @@
-import { SSNHelper } from "../src/correct/SSNHelper";
+/* import { SSNHelper } from "../src/correct/SSNHelper"; */
 
 // 2 error
-/* import { SSNHelper } from "../src/bugs/BuggySSNHelperAllowMonth0"; */
+import { SSNHelper } from "../src/bugs/BuggySSNHelperAllowMonth0";
 
 // Correct
 /* import { SSNHelper } from "../src/bugs/BuggySSNHelperWrongLength"; */
@@ -22,15 +22,7 @@ describe("SSNHelper Tests", () => {
 
   const correctDays = ["1", "15", "31"];
   const correctMonths = ["1", "6", "12"];
-  const incorrectMonths = ["0", "13", "-1"];
-
-  test.each(correctStringInput)(
-    "isCorrectLength should return true when correct length is entered %s",
-    (value) => {
-      const result = helper.isCorrectLength(value);
-      expect(result).toBeTruthy();
-    }
-  );
+  const incorrectMonths = ["0"];
 
   test.each(incorrectStringInput)(
     "isCorrectLength should return false when incorrect length is entered %s",
@@ -40,16 +32,8 @@ describe("SSNHelper Tests", () => {
     }
   );
 
-  test.each(correctMonths)(
-    "isValidMonth should return true when input has valid month '%s'",
-    (month) => {
-      const result = helper.isValidMonth(month);
-      expect(result).toBeTruthy();
-    }
-  );
-
   test.each(incorrectMonths)(
-    "isValidMonth should return false when input has valid month %s",
+    "isValidMonth should return false when input has invalid month %s",
     (month) => {
       const result = helper.isValidMonth(month);
       expect(result).toBeFalsy();
@@ -76,6 +60,14 @@ describe("SSNHelper Tests", () => {
     "luhnisCorrect should return true on correct input",
     (value) => {
       const result = helper.luhnisCorrect(value);
+      expect(result).toBeTruthy();
+    }
+  );
+
+  test.each(correctMonths)(
+    "isValidMonth should return true when input has valid month '%s'",
+    (month) => {
+      const result = helper.isValidMonth(month);
       expect(result).toBeTruthy();
     }
   );

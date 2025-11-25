@@ -1,4 +1,4 @@
-Write run tests
+## Password
 | Testname       | *Correct* | *NotHash* | *NoTrim* |  *PassAlwaysSame* | *MissingNumberCheck* | *MissingPasswordCheck* | *ContainsNumber* | *ShortPassword* | *VeryShort* | *WrongHashAlg* | *Wrong Message* | *My Bug* |
 |---|---|---|---|---|---|---|---|---|---|---|---| ---|
 | InstanceOf Password argument  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | 
@@ -11,7 +11,7 @@ Write run tests
 | Coverage                      | 100% | 100% | 100% | 100% | 93% | 93% | 41.7% | 100% | 100% | 100% | 100% | 100% | 
 
 ---
-Write Mocked tests
+## Social Security Number
 
 | Testname            | *Correct* | *NoLenCheck* | *NoTrim* |  *NumberNoLuhn* | *WrongYear* |
 |---|---|---|---|---|---|
@@ -24,3 +24,17 @@ Write Mocked tests
 | Day invalid         | ✅  | ✅ | ✅ | ✅ | ✅ |  
 | Last 4 digits       | ✅  | ✅ | ✅ | ✅ | ✅ |  
 | Coverage            | 100% | 100% | 100% | 100% | 100% |
+
+
+---
+## Helper
+
+| Testname            | *Correct* | *Allow Month 0* | *Wrong Length* |  *Incorrect Format* | *Allow day 30* | *Messy Luhn* |
+|---|---|---|---|---|---|---|
+| Invalid Length      | ✅  | ✅ | ❌ | ✅ | ✅ | ✅ | 
+| Invalid month       | ✅  | ❌ | ✅ | ✅ | ✅ | ✅ |
+| Valid day           | ✅  | ✅ | ✅ | ✅ | ❌ | ✅ |
+| invalid format      | ✅  | ✅ | ✅ | ❌ | ✅ | ✅ |
+| Valid luhnsCorrect  | ✅  | ✅ | ✅ | ✅ | ✅ | ❌ | 
+| Valid month         | ✅  | ✅ | ✅ | ✅ | ✅ | ✅ | 
+| Coverage            | 100% | 100% | 100% | 100% | 100% |100% |
