@@ -1,7 +1,7 @@
-/* import { SSNHelper } from "../src/correct/SSNHelper"; */
+import { SSNHelper } from "../src/correct/SSNHelper";
 
 // 2 error
-import { SSNHelper } from "../src/bugs/BuggySSNHelperAllowMonth0";
+/* import { SSNHelper } from "../src/bugs/BuggySSNHelperAllowMonth0"; */
 
 // Correct
 /* import { SSNHelper } from "../src/bugs/BuggySSNHelperWrongLength"; */
