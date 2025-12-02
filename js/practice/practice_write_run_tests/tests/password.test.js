@@ -32,18 +32,21 @@ describe("Password class, test suite", () => {
     }).toThrow("Invalid argument");
   });
 
-  test("constructor should throw exception for short passwords", () => {
-    for (const pw of incorrectPasswords) {
+  test.each(incorrectPasswords)(
+    "constructor should throw exception for short passwords",
+    (pw) => {
       expect(() => new Password(pw)).toThrow("Too short password");
     }
-  });
+  );
 
   test("constructor should trim passwords", () => {
-    const passwordWithSpaces = new Password("  1234567890123  ");
-    const passwordWithOutSpaces = new Password("1234567890123");
-    expect(passwordWithSpaces.getPasswordHash()).toBe(
-      passwordWithOutSpaces.getPasswordHash()
-    );
+    const passwordWithSpaces = new Password(
+      "  1234567890123  "
+    ).getPasswordHash();
+    const passwordWithOutSpaces = new Password(
+      "1234567890123"
+    ).getPasswordHash();
+    expect(passwordWithSpaces).toBe(passwordWithOutSpaces);
   });
 
   test("constructor should throw exception for passwords without numbers", () => {
@@ -64,7 +67,7 @@ describe("Password class, test suite", () => {
     for (let i = 0; i < correctPassword.length; i++) {
       hashValue = hashValue * 31 + correctPassword.charCodeAt(i);
     }
-    expect(password.getPasswordHash()).toBe(hashValue);
+    expect(password.getPasswordHash()).toEqual(hashValue);
   });
 
   test("isPasswordSame should return false on different passwords", () => {

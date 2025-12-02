@@ -8,7 +8,8 @@
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "t1": "node --experimental-vm-modules node_modules/jest/bin/jest.js practice/practice_write_run_test",
     "t2": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose practice/practice_write_mocked_tests",
-    "t3": "node --experimental-vm-modules node_modules/jest/bin/jest.js examination"
+    "t3": "node --experimental-vm-modules node_modules/jest/bin/jest.js examination",
+    "t4": "node --experimental-vm-modules node_modules/jest/bin/jest.js practice/my_own"
   },
   "keywords": [],
   "author": "",
